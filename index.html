@@ -169,7 +169,7 @@
             filter: grayscale(0%);
         }
 
-        /* Lightbox Overlay */
+        /* Updated Lightbox Overlay */
         #lightbox {
             display: none;
             position: fixed;
@@ -179,10 +179,10 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
-            cursor: zoom-out;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            user-select: none;
         }
 
         #lightbox img {
@@ -191,6 +191,34 @@
             border: 2px solid var(--primary);
             border-radius: 4px;
             box-shadow: 0 0 30px rgba(0, 168, 255, 0.3);
+        }
+
+        /* Navigation Buttons */
+        .lb-btn {
+            position: absolute;
+            background: rgba(0,0,0,0.3);
+            color: white;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 2.5rem;
+            transition: 0.3s;
+            z-index: 10001;
+            border-radius: 5px;
+        }
+
+        .lb-btn:hover {
+            color: var(--primary);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .lb-prev { left: 20px; }
+        .lb-next { right: 20px; }
+        .lb-close { 
+            top: 20px; 
+            right: 20px; 
+            font-size: 3rem; 
+            padding: 10px 20px;
         }
 
         /* Call to Action */
@@ -239,14 +267,25 @@
             border-top: 1px solid var(--accent);
         }
 
-        @media (max-width: 900px) { .portfolio-grid { column-count: 2; } .hero h1 { font-size: 2.5rem; } }
-        @media (max-width: 600px) { .portfolio-grid { column-count: 1; } }
+        @media (max-width: 900px) { 
+            .portfolio-grid { column-count: 2; } 
+            .hero h1 { font-size: 2.5rem; } 
+        }
+        @media (max-width: 600px) { 
+            .portfolio-grid { column-count: 1; }
+            .lb-btn { padding: 10px; font-size: 1.5rem; }
+            .lb-prev { left: 5px; }
+            .lb-next { right: 5px; }
+        }
     </style>
 </head>
 <body>
 
     <div id="lightbox">
+        <button class="lb-btn lb-close" aria-label="Close">&times;</button>
+        <button class="lb-btn lb-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
         <img id="lightbox-img" src="" alt="Popup View">
+        <button class="lb-btn lb-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
     </div>
 
     <nav>
@@ -284,16 +323,33 @@
         <p class="portfolio-sub">A showcase of our 4K aerial captures across the Commonwealth</p>
 
         <div class="portfolio-grid">
-            <div class="portfolio-item"><img src="images/louisville-skyline-river-drone.jpg" alt="Louisville skyline"></div>
-            <div class="portfolio-item"><img src="images/colgate-clock-louisville-drone.jpg" alt="Colgate Clock"></div>
-            <div class="portfolio-item"><img src="images/lexington-financial-center.jpg" alt="Lexington Financial Center"></div>
-            <div class="portfolio-item"><img src="images/big-four-bridge-day-drone.jpg" alt="Big Four Bridge"></div>
-            <div class="portfolio-item"><img src="images/CSX_train_bridge_ohio_river.jpg" alt="CSX Bridge"></div>
-            <div class="portfolio-item"><img src="images/louisvile_csx_train_bridge_skyline.jpg" alt="Rail Infrastructure"></div>
-            <div class="portfolio-item"><img src="images/carvana-tower-inspection.jpg" alt="Tower Inspection"></div>
-            <div class="portfolio-item"><img src="images/OH-river-frozen-drone.jpg" alt="Frozen Ohio River"></div>
-            <div class="portfolio-item"><img src="images/louisville-360-tiny-planet.jpg" alt="Tiny Planet"></div>
-            </div>
+            <div class="portfolio-item"><img src="images/louisville-skyline-river-drone.jpg" alt="Louisville skyline and Ohio River aerial"></div>
+            <div class="portfolio-item"><img src="images/colgate-clock-louisville-drone.jpg" alt="Historic Colgate Clock drone inspection"></div>
+            <div class="portfolio-item"><img src="images/lexington-financial-center.jpg" alt="Lexington Financial Center Big Blue Building"></div>
+            <div class="portfolio-item"><img src="images/big-four-bridge-day-drone.jpg" alt="Big Four Bridge Louisville"></div>
+            <div class="portfolio-item"><img src="images/kentucky-lake-autumn-aerial.jpg" alt="Kentucky Lake fall foliage aerial"></div>
+            <div class="portfolio-item"><img src="images/CSX_train_bridge_ohio_river.jpg" alt="CSX train bridge Ohio River"></div>
+            <div class="portfolio-item"><img src="images/louisvile_csx_train_bridge_skyline.jpg" alt="CSX train bridge with Louisville skyline"></div>
+            <div class="portfolio-item"><img src="images/kentucky-freight-train-bridge.jpg" alt="Freight train crossing Kentucky bridge"></div>
+            <div class="portfolio-item"><img src="images/carvana-tower-inspection.jpg" alt="Carvana glass tower inspection"></div>
+            <div class="portfolio-item"><img src="images/industrial-fleet-lot-drone.jpg" alt="Industrial fleet inventory drone shot"></div>
+            <div class="portfolio-item"><img src="images/historic-arch-inspection.jpg" alt="Historic monument structural inspection"></div>
+            <div class="portfolio-item"><img src="images/OH-river-frozen-drone.jpg" alt="Frozen Ohio River aerial"></div>
+            <div class="portfolio-item"><img src="images/OH-river-frozen-drone-closeup.jpg" alt="Ice floes on Ohio River drone shot"></div>
+            <div class="portfolio-item"><img src="images/ohio-river-frozen-louisville-aerial.jpg" alt="Aerial view of frozen Louisville waterfront"></div>
+            <div class="portfolio-item"><img src="images/louisville_flood_oh_river_waterfront_drone.jpg" alt="Ohio River flooding at Louisville waterfront"></div>
+            <div class="portfolio-item"><img src="images/snow-frozen-morning-cold-louisville-drone-aerial.jpg" alt="Snowy Louisville morning aerial"></div>
+            <div class="portfolio-item"><img src="images/neighborhood-frozen-snow-golf-course_drone.jpg" alt="Frozen golf course and neighborhood snow"></div>
+            <div class="portfolio-item"><img src="images/drone-aerial-sunrise-fog-morning-louisville.jpg" alt="Sunrise fog over Louisville"></div>
+            <div class="portfolio-item"><img src="images/golf_course_fog_louisville.jpg" alt="Foggy morning on Louisville golf course"></div>
+            <div class="portfolio-item"><img src="images/louisville-360-tiny-planet.jpg" alt="360 degree tiny planet Louisville"></div>
+            <div class="portfolio-item"><img src="images/ohio-river-360-drone.jpg" alt="360 degree drone panorama Ohio River"></div>
+            <div class="portfolio-item"><img src="images/panorama-louisville-polofields-rainbow-aerial-drone.jpg" alt="Rainbow over Polo Fields Louisville"></div>
+            <div class="portfolio-item"><img src="images/shelby-county-ky-farm-aerial-beautiful.jpg" alt="Shelby County Kentucky farm aerial"></div>
+            <div class="portfolio-item"><img src="images/neighborhood-sky-aerial-drone-kentucky-louisville.jpg" alt="Louisville neighborhood aerial"></div>
+            <div class="portfolio-item"><img src="images/night-long-exposure_aerial.jpg" alt="Night long exposure drone photography"></div>
+            <div class="portfolio-item"><img src="images/louisville-soccer-sunrise-drone.jpg" alt="Louisville soccer stadium at sunrise"></div>
+        </div>
     </section>
 
     <footer>
@@ -321,18 +377,69 @@
     <script>
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
+        const images = Array.from(document.querySelectorAll('.portfolio-item img'));
+        let currentIndex = 0;
 
-        // Select all images in the portfolio
-        document.querySelectorAll('.portfolio-item img').forEach(img => {
-            img.addEventListener('click', () => {
+        // Function to update image in lightbox
+        const updateLightbox = () => {
+            lbImg.src = images[currentIndex].src;
+        };
+
+        // Open Lightbox
+        images.forEach((img, index) => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = index;
+                updateLightbox();
                 lb.style.display = 'flex';
-                lbImg.src = img.src;
+                document.body.style.overflow = 'hidden'; // Stop scrolling background
             });
         });
 
-        // Close when clicking background
-        lb.addEventListener('click', () => {
+        // Navigation Logic
+        const nextImg = () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateLightbox();
+        };
+
+        const prevImg = () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateLightbox();
+        };
+
+        const closeLB = () => {
             lb.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+
+        // Click Events
+        document.querySelector('.lb-next').addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextImg();
+        });
+
+        document.querySelector('.lb-prev').addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevImg();
+        });
+
+        document.querySelector('.lb-close').addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeLB();
+        });
+
+        // Close on background click (but not when clicking the image itself)
+        lb.addEventListener('click', (e) => {
+            if (e.target === lb) closeLB();
+        });
+
+        // Keyboard Support
+        document.addEventListener('keydown', (e) => {
+            if (lb.style.display === 'flex') {
+                if (e.key === "ArrowRight") nextImg();
+                if (e.key === "ArrowLeft") prevImg();
+                if (e.key === "Escape") closeLB();
+            }
         });
     </script>
 
