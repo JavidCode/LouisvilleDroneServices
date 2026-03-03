@@ -17,7 +17,7 @@
     <meta property="og:title" content="Louisville Drone Services | Professional Aerial Perspectives">
     <meta property="og:description" content="FAA-certified 4K drone cinematography. 7 years of flight experience serving Kentucky.">
     <meta property="og:image" content="https://louisvilledrones.com/og-image.jpg">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --primary: #00a8ff;
@@ -196,6 +196,52 @@
             font-size: 1.1rem;
         }
 
+                    /* Lightbox Overlay */
+            #lightbox {
+                display: none;
+                position: fixed;
+                z-index: 2000;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                cursor: zoom-out;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            #lightbox img {
+                max-width: 90%;
+                max-height: 80%;
+                border: 2px solid var(--primary);
+                border-radius: 4px;
+                box-shadow: 0 0 30px rgba(0, 168, 255, 0.3);
+            }
+            
+        .social-icons {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* Space between icons */
+        }
+        
+        .social-icons a {
+            color: var(--primary);
+            font-size: 2rem; /* Size of the logo */
+            transition: 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: white;
+            transform: translateY(-3px); /* Little lift effect when hovering */
+            filter: drop-shadow(0 0 8px var(--primary));
+        }
+
+            /* Add a pointer cursor to gallery items to show they are clickable */
+            .portfolio-item { cursor: zoom-in; }
+
         /* Responsive adjustments */
         @media (max-width: 900px) { .portfolio-grid { column-count: 2; } .hero h1 { font-size: 2.5rem; } }
         @media (max-width: 600px) { .portfolio-grid { column-count: 1; } }
@@ -207,6 +253,23 @@
 </head>
 <body>
 
+
+<div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="Popup View">
+</div>
+
+<script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.portfolio-item img').forEach(image => {
+        image.onclick = (e) => {
+            e.stopPropagation();
+            lightbox.style.display = 'flex';
+            lightboxImg.src = image.src;
+        };
+    });
+</script>
     <nav>
         <img src="logo.png" alt="Louisville Drone Services" class="logo">
     </nav>
@@ -276,17 +339,22 @@
 
     <footer>
         <div id="contact">
-            <h3 style="color: var(--text);">Contact Javid Beykzadeh</h3>
+            <h3 style="color: var(--text);">Contact Us</h3>
             <p style="font-size: 1.5rem; color: var(--primary); margin: 10px 0;">502-320-7067</p>
             <p>louisvilledroneservices@gmail.com</p>
             
-            <a href="https://www.facebook.com/louisvilledroneservices" target="_blank" class="social-link">
-                Connect on Facebook
-            </a>
+       <div class="social-icons">
+    <a href="https://www.facebook.com/louisvilledroneservices" target="_blank" title="Facebook">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://www.instagram.com/your-profile" target="_blank" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+</div>
 
             <p style="margin-top: 40px; font-size: 0.8rem;">
                 &copy; 2026 Louisville Drone Services. <br>
-                Part 107 Remote Pilot Certificate Holder.
+                A Part 107 Remote Pilot Certificate Holder.
             </p>
         </div>
     </footer>
