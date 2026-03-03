@@ -277,7 +277,19 @@
             .lb-prev { left: 5px; }
             .lb-next { right: 5px; }
         }
-    </style>
+        /* Desktop size */
+        .logo {
+            max-width: 240px;
+            height: auto;
+        }
+
+        /* Mobile size adjustment */
+        @media (max-width: 600px) {
+            .logo {
+                max-width: 160px;
+            }
+        }
+            </style>
 </head>
 <body>
 
