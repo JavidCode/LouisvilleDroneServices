@@ -1,4 +1,4 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,12 +40,12 @@
             z-index: 1000;
         }
 
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        /* Logo styling */
+        .logo {
+            max-width: 240px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
         .hero {
@@ -235,13 +235,17 @@
         }
 
         @media (max-width: 900px) { .portfolio-grid { column-count: 2; } }
-        @media (max-width: 600px) { .portfolio-grid { column-count: 1; } }
+        @media (max-width: 600px) { 
+            .portfolio-grid { column-count: 1; }
+            .logo { max-width: 160px; }
+            .hero h1 { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-text">Louisville Drone Services</div>
+        <img src="https://raw.githubusercontent.com/JavidCode/LouisvilleDroneServices/main/logo.png" alt="Louisville Drone Services" class="logo">
     </nav>
 
     <header class="hero">
@@ -335,8 +339,8 @@
         </p>
 
         <h2 class="portfolio-title">Drone Portfolio</h2>
-       <div class="portfolio-grid">
-            <div class="portfolio-item"><img src="images/louisville-skyline-river-drone.jpg" alt="Louisville skyline and Ohio River aerial"></div>
+        <div class="portfolio-grid">
+           <div class="portfolio-item"><img src="images/louisville-skyline-river-drone.jpg" alt="Louisville skyline and Ohio River aerial"></div>
             <div class="portfolio-item"><img src="images/colgate-clock-louisville-drone.jpg" alt="Historic Colgate Clock drone inspection"></div>
             <div class="portfolio-item"><img src="images/lexington-financial-center.jpg" alt="Lexington Financial Center Big Blue Building"></div>
             <div class="portfolio-item"><img src="images/big-four-bridge-day-drone.jpg" alt="Big Four Bridge Louisville"></div>
