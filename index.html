@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://louisvilledrones.com/">
     <meta property="og:title" content="Louisville Drone Services | Professional Aerial Perspectives">
     <meta property="og:description" content="FAA-certified 4K drone cinematography. 7 years of flight experience serving Kentucky.">
-    <meta property="og:image" content="https://louisvilledrones.com/main/images/hero-bg.jpg"> 
+    <meta property="og:image" content="https://louisvilledrones.com/og-image.jpg">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -73,7 +73,7 @@
         .hero {
             padding: 160px 20px;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/hero-bg.jpg');
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('images/panorama-louisville-polofields-rainbow-aerial-drone.jpg');
             background-color: #111;
             background-size: cover;
             background-position: center;
@@ -181,6 +181,43 @@
 
         .portfolio-item:hover img {
             filter: grayscale(0%);
+        }
+
+        /* Portfolio Section Footer Info Bar */
+        .portfolio-info-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            background: linear-gradient(135deg, #111 0%, #161616 100%);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .info-bar-item {
+            padding: 10px;
+        }
+
+        .info-bar-item i {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .info-bar-item h4 {
+            margin: 5px 0;
+            font-size: 1.1rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-bar-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
         /* Lightbox Overlay */
@@ -500,6 +537,24 @@
             <div class="portfolio-item"><img src="images/night-long-exposure_aerial.jpg" alt="Night long exposure drone photography"></div>
             <div class="portfolio-item"><img src="images/louisville-soccer-sunrise-drone.jpg" alt="Louisville soccer stadium at sunrise"></div>
         </div>
+
+        <div class="portfolio-info-bar">
+            <div class="info-bar-item">
+                <i class="fa-solid fa-camera-retro"></i>
+                <h4>4K UHD Imagery</h4>
+                <p>High-bracket HDR stills & ultra-smooth cinematic video captures.</p>
+            </div>
+            <div class="info-bar-item">
+                <i class="fa-solid fa-helicopter"></i>
+                <h4>Airspace Compliant</h4>
+                <p>LAANC pre-checked for safe flights around the Louisville terminal area.</p>
+            </div>
+            <div class="info-bar-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <h4>Central KY Coverage</h4>
+                <p>Serving Jefferson, Shelby, Oldham, and surrounding counties.</p>
+            </div>
+        </div>
     </section>
 
     <section id="request-quote" class="form-container-wrap">
@@ -611,7 +666,7 @@
                         <span style="color: #00a8ff; font-weight: bold;">✓</span>
                         <div>
                             <strong>FAA Standards</strong><br>
-                            <span style="color: #999; font-size: 0.95rem;">Currently finalizing Part 107 certification for professional, safe, and compliant operations.</span>
+                            <span style="color: #999; font-size: 0.95rem;">A proud Part 107 remote pilot certificate holder committed to safe, compliant operations.</span>
                         </div>
                     </div>
                 </div>
@@ -625,4 +680,143 @@
                     <a href="https://www.facebook.com/louisvilledroneservices" target="_blank" title="Facebook">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
-                    <a href="https://www.instagram.com/your-profile" target="_blank" title="
+                    <a href="https://www.instagram.com/your-profile" target="_blank" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+                <p style="font-size: 0.75rem; color: #555; line-height: 1.5; text-transform: uppercase; letter-spacing: 1px;">
+                    © 2026 LOUISVILLE DRONE SERVICES<br>
+                    A FAA PART 107 REMOTE PILOT CERTIFICATE HOLDER
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Providing 4K Aerial Perspectives across Kentucky since 2019.</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // ---- Lightbox Logic ----
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const images = Array.from(document.querySelectorAll('.portfolio-item img'));
+        let currentIndex = 0;
+
+        const updateLightbox = () => {
+            lbImg.src = images[currentIndex].src;
+        };
+
+        images.forEach((img, index) => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = index;
+                updateLightbox();
+                lb.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const nextImg = () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateLightbox();
+        };
+
+        const prevImg = () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateLightbox();
+        };
+
+        const closeLB = () => {
+            lb.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+
+        document.querySelector('.lb-next').addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextImg();
+        });
+
+        document.querySelector('.lb-prev').addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevImg();
+        });
+
+        document.querySelector('.lb-close').addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeLB();
+        });
+
+        lb.addEventListener('click', (e) => {
+            if (e.target === lb) closeLB();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (lb.style.display === 'flex') {
+                if (e.key === "ArrowRight") nextImg();
+                if (e.key === "ArrowLeft") prevImg();
+                if (e.key === "Escape") closeLB();
+            }
+        });
+
+        // ---- Google Sheets Intake Form Handler ----
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRcMGa8xmsFUVresr9tZ7oUo_Hs7OlbK-KXDFWOMJqad5RWT_-4I8IxohGslsZjmqs/exec";
+        const pillsContainer = document.getElementById('pills');
+        const serviceInput = document.getElementById('service-input');
+        
+        pillsContainer.querySelectorAll('.pill').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                pillsContainer.querySelectorAll('.pill').forEach(function (b) { b.classList.remove('selected'); });
+                btn.classList.add('selected');
+                serviceInput.value = btn.dataset.val;
+            });
+        });
+
+        const form = document.getElementById('intake-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const successMsg = document.getElementById('success-msg');
+        const errorMsg = document.getElementById('error-msg');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            if (!serviceInput.value) {
+                errorMsg.textContent = 'Please select a mission type above.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            if (SCRIPT_URL.indexOf('PASTE_YOUR') === 0) {
+                errorMsg.textContent = 'Form is not yet connected to a sheet. See SETUP-INSTRUCTIONS.md.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const formData = new FormData(form);
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            })
+            .then(function () {
+                successMsg.style.display = 'block';
+                form.reset();
+                pillsContainer.querySelectorAll('.pill').forEach(function (b) { b.classList.remove('selected'); });
+            })
+            .catch(function () {
+                errorMsg.style.display = 'block';
+            })
+            .finally(function () {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send flight request';
+            });
+        });
+    </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"55eaa639f13645fba500ec6c6bcc9af6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
