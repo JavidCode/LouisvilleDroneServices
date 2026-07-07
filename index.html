@@ -18,6 +18,11 @@
     <meta property="og:description" content="FAA-certified 4K drone cinematography. 7 years of flight experience serving Kentucky.">
     <meta property="og:image" content="https://louisvilledrones.com/og-image.jpg">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -30,80 +35,209 @@
             --card-bg: #1a1a1a;
             --text: #f0f0f0;
             --text-muted: #888;
-            --border: #333;
+            --accent: #333;
             --input-bg: #111;
         }
+
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
             padding: 0;
-            display: block;
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
+
         nav {
             padding: 20px;
             text-align: center;
             background: #111;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
         .logo {
-            max-width: 200px;
+            max-width: 240px;
             height: auto;
         }
-        
-        /* ENHANCED HERO COMPONENT: Integrates your drone shot elegantly */
+
+        @media (max-width: 600px) {
+            .logo { max-width: 160px; }
+        }
+
         .hero {
-            padding: 160px 20px; /* Increased padding for better visibility of your shot */
+            padding: 160px 20px;
             text-align: center;
-            /* The 0.65 values act as a 65% dark tint overlay so your text stays perfectly clear */
             background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('hero-bg.jpg');
             background-color: #111;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: -webkit-scroll; /* Better performance across mobile viewports */
+            background-attachment: fixed;
         }
+
         .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
-            letter-spacing: -1px;
+            font-size: 3.5rem;
             margin: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
+
         .hero p {
-            font-size: 1.3rem !important; 
-            color: #ddd;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: bold;
             margin-top: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
-        
+
         .section {
-            padding: 50px 20px;
-            max-width: 900px;
+            padding: 60px 20px;
+            max-width: 1200px;
             margin: 0 auto;
         }
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
+
+        .intro-box {
+            background: #151515;
+            padding: 40px;
+            border-left: 5px solid var(--primary);
+            border-radius: 4px;
+            margin-bottom: 40px;
         }
+
+        /* Services Grid */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
         .card {
-            flex: 1;
-            min-width: 250px;
             background: var(--card-bg);
-            padding: 25px;
+            padding: 30px;
             border-radius: 8px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--accent);
             transition: 0.3s;
         }
-        .card:hover { border-color: var(--primary); }
+
+        .card:hover { 
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
         .card h3 { color: var(--primary); margin-top: 0; }
-        
+
+        /* Portfolio Gallery */
+        .portfolio-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .portfolio-sub {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-grid {
+            column-count: 3;
+            column-gap: 15px;
+        }
+
+        .portfolio-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--accent);
+            background: #111;
+            transition: all 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            display: block;
+            filter: grayscale(15%);
+            transition: 0.4s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,168,255,0.2);
+        }
+
+        .portfolio-item:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* Lightbox Overlay */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            user-select: none;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0, 168, 255, 0.3);
+        }
+
+        .lb-btn {
+            position: absolute;
+            background: rgba(0,0,0,0.3);
+            color: white;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 2.5rem;
+            transition: 0.3s;
+            z-index: 10001;
+            border-radius: 5px;
+        }
+
+        .lb-btn:hover {
+            color: var(--primary);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .lb-prev { left: 20px; }
+        .lb-next { right: 20px; }
+        .lb-close { 
+            top: 20px; 
+            right: 20px; 
+            font-size: 3rem; 
+            padding: 10px 20px;
+        }
+
+        /* Call to Action */
         .cta-btn {
             display: inline-block;
-            padding: 15px 35px;
+            padding: 18px 35px;
             background: var(--primary);
             color: white;
             text-decoration: none;
@@ -111,32 +245,19 @@
             font-weight: bold;
             margin-top: 25px;
             box-shadow: 0 4px 15px rgba(0, 168, 255, 0.3);
-            transition: transform 0.2s, background 0.2s;
+            transition: 0.3s;
         }
-        .cta-btn:hover { 
+
+        .cta-btn:hover {
             background: var(--primary-dark);
+            box-shadow: 0 0 15px var(--primary);
             transform: translateY(-2px);
         }
 
-        .social-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
-        .social-link:hover {
-            color: white;
-            text-shadow: 0 0 10px var(--primary);
-        }
-        footer { text-align: center; padding: 40px; color: #666; font-size: 0.8rem; border-top: 1px solid #222; }
-
-        /* Scoped intake form container */
+        /* Scoped Native Dark Intake Form Container Styles */
         .form-container-wrap {
             max-width: 750px;
-            margin: 60px auto;
+            margin: 80px auto;
             padding: 0 20px;
         }
         .form-header-block {
@@ -172,7 +293,7 @@
         
         .form-card {
             background: var(--card-bg) !important;
-            border: 1px solid var(--border) !important;
+            border: 1px solid var(--accent) !important;
             border-radius: 12px !important;
             padding: 2.5rem !important;
             box-sizing: border-box;
@@ -203,7 +324,7 @@
             font-size: 14px;
             text-align: left;
             padding: 12px 14px;
-            border: 1px solid var(--border) !important;
+            border: 1px solid var(--accent) !important;
             border-radius: 6px !important;
             background: var(--input-bg) !important;
             color: var(--text) !important;
@@ -222,7 +343,7 @@
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             padding: 12px;
-            border: 1px solid var(--border) !important;
+            border: 1px solid var(--accent) !important;
             border-radius: 6px !important;
             background: var(--input-bg) !important;
             color: var(--text) !important;
@@ -269,44 +390,118 @@
             color: #555;
             margin-top: 1.5rem;
         }
+
+        /* Social Icons */
+        .social-icons {
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .social-icons a {
+            color: var(--primary);
+            font-size: 2.5rem;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            color: white;
+            transform: translateY(-5px);
+            filter: drop-shadow(0 0 8px var(--primary));
+        }
+
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            background: #050505;
+            color: #888;
+            border-top: 1px solid var(--accent);
+        }
+
+        @media (max-width: 900px) { 
+            .portfolio-grid { column-count: 2; } 
+            .hero h1 { font-size: 2.5rem; } 
+        }
+        @media (max-width: 600px) { 
+            .portfolio-grid { column-count: 1; }
+            .lb-btn { padding: 10px; font-size: 1.5rem; }
+            .lb-prev { left: 5px; }
+            .lb-next { right: 5px; }
+        }
     </style>
 </head>
 <body>
+
+    <div id="lightbox">
+        <button class="lb-btn lb-close" aria-label="Close">&times;</button>
+        <button class="lb-btn lb-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Popup View">
+        <button class="lb-btn lb-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
 
     <nav>
         <img src="logo.png" alt="Louisville Drone Services" class="logo">
     </nav>
 
-    <!-- Header Section displaying your background photo -->
     <header class="hero">
         <h1>Precision From Above</h1>
-        <p>FAA Part 107 Certified | Louisville, KY</p>
-        <a href="#request-quote" class="cta-btn">Get a Quote</a>
+        <p>FAA Part 107 Certified | 7 Years Flight Experience</p>
+        <a href="#request-quote" class="cta-btn">Request a Free Quote</a>
     </header>
 
     <section class="section">
-        <div style="background: #151515; padding: 30px; border-left: 4px solid var(--primary); border-radius: 4px;">
-            <h2>7 Years of Flight Experience</h2>
-            <p>Providing professional aerial photography, 4K videography, and technical inspections across the Commonwealth of Kentucky. We specialize in capturing unique perspectives for real estate, industrial, and landmark projects.</p>
+        <div class="intro-box">
+            <h2>Professional Kentucky Drone Solutions</h2>
+            <p>Providing high-resolution 4K aerial photography, cinematic videography, and technical infrastructure inspections. From historic Louisville landmarks to complex industrial rail yards, we deliver perspectives that ground-based cameras can't reach.</p>
         </div>
 
         <div class="card-container">
             <div class="card">
                 <h3>Real Estate</h3>
-                <p>High-end cinematic tours and aerial stills for luxury listings.</p>
+                <p>Cinematic fly-throughs and high-altitude stills for commercial and luxury residential listings.</p>
             </div>
             <div class="card">
                 <h3>Inspections</h3>
-                <p>Rapid roof and infrastructure assessments using 4K zoom optics.</p>
+                <p>Detailed roof, tower, and infrastructure assessments designed for safety and structural integrity.</p>
             </div>
             <div class="card">
-                <h3>Rail & Landmarks</h3>
-                <p>Specialized documentation of Kentucky's rich industrial and rail history.</p>
+                <h3>Rail & Industrial</h3>
+                <p>Specialized documentation for rail logistics and large-scale industrial fleet management.</p>
             </div>
+        </div>
+
+        <h2 class="portfolio-title">Drone Portfolio</h2>
+        <p class="portfolio-sub">A showcase of our 4K aerial captures across the Commonwealth</p>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item"><img src="images/louisville-skyline-river-drone.jpg" alt="Louisville skyline and Ohio River aerial"></div>
+            <div class="portfolio-item"><img src="images/colgate-clock-louisville-drone.jpg" alt="Historic Colgate Clock drone inspection"></div>
+            <div class="portfolio-item"><img src="images/lexington-financial-center.jpg" alt="Lexington Financial Center Big Blue Building"></div>
+            <div class="portfolio-item"><img src="images/big-four-bridge-day-drone.jpg" alt="Big Four Bridge Louisville"></div>
+            <div class="portfolio-item"><img src="images/kentucky-lake-autumn-aerial.jpg" alt="Kentucky Lake fall foliage aerial"></div>
+            <div class="portfolio-item"><img src="images/CSX_train_bridge_ohio_river.jpg" alt="CSX train bridge Ohio River"></div>
+            <div class="portfolio-item"><img src="images/louisvile_csx_train_bridge_skyline.jpg" alt="CSX train bridge with Louisville skyline"></div>
+            <div class="portfolio-item"><img src="images/kentucky-freight-train-bridge.jpg" alt="Freight train crossing Kentucky bridge"></div>
+            <div class="portfolio-item"><img src="images/carvana-tower-inspection.jpg" alt="Carvana glass tower inspection"></div>
+            <div class="portfolio-item"><img src="images/industrial-fleet-lot-drone.jpg" alt="Industrial fleet inventory drone shot"></div>
+            <div class="portfolio-item"><img src="images/historic-arch-inspection.jpg" alt="Historic monument structural inspection"></div>
+            <div class="portfolio-item"><img src="images/OH-river-frozen-drone.jpg" alt="Frozen Ohio River aerial"></div>
+            <div class="portfolio-item"><img src="images/OH-river-frozen-drone-closeup.jpg" alt="Ice floes on Ohio River drone shot"></div>
+            <div class="portfolio-item"><img src="images/ohio-river-frozen-louisville-aerial.jpg" alt="Aerial view of frozen Louisville waterfront"></div>
+            <div class="portfolio-item"><img src="images/louisville-flood_oh_river_waterfront_drone.jpg" alt="Ohio River flooding at Louisville waterfront"></div>
+            <div class="portfolio-item"><img src="images/snow-frozen-morning-cold-louisville-drone-aerial.jpg" alt="Snowy Louisville morning aerial"></div>
+            <div class="portfolio-item"><img src="images/neighborhood-frozen-snow-golf-course_drone.jpg" alt="Frozen golf course and neighborhood snow"></div>
+            <div class="portfolio-item"><img src="images/drone-aerial-sunrise-fog-morning-louisville.jpg" alt="Sunrise fog over Louisville"></div>
+            <div class="portfolio-item"><img src="images/golf_course_fog_louisville.jpg" alt="Foggy morning on Louisville golf course"></div>
+            <div class="portfolio-item"><img src="images/louisville-360-tiny-planet.jpg" alt="360 degree tiny planet Louisville"></div>
+            <div class="portfolio-item"><img src="images/ohio-river-360-drone.jpg" alt="360 degree drone panorama Ohio River"></div>
+            <div class="portfolio-item"><img src="images/panorama-louisville-polofields-rainbow-aerial-drone.jpg" alt="Rainbow over Polo Fields Louisville"></div>
+            <div class="portfolio-item"><img src="images/shelby-county-ky-farm-aerial-beautiful.jpg" alt="Shelby County Kentucky farm aerial"></div>
+            <div class="portfolio-item"><img src="images/neighborhood-sky-aerial-drone-kentucky-louisville.jpg" alt="Louisville neighborhood aerial"></div>
+            <div class="portfolio-item"><img src="images/night-long-exposure_aerial.jpg" alt="Night long exposure drone photography"></div>
+            <div class="portfolio-item"><img src="images/louisville-soccer-sunrise-drone.jpg" alt="Louisville soccer stadium at sunrise"></div>
         </div>
     </section>
 
-    <!-- Seamless Dark Theme Intake Form Section -->
     <section id="request-quote" class="form-container-wrap">
         <div class="form-header-block">
             <div class="eyebrow">FAA PART 107 CERTIFIED</div>
@@ -387,74 +582,47 @@
         <div class="form-footer-notice">Louisville Drone Services &middot; Part 107 certified &middot; Fully insured</div>
     </section>
 
-    <footer id="contact">
-        <p>Contact: 502-320-7067</p>
-        <p>louisvilledroneservices@gmail.com</p>
-        
-        <a href="https://www.facebook.com/louisvilledroneservices" target="_blank" class="social-link">
-            Follow us on Facebook
-        </a>
+    <section id="about" style="padding: 80px 20px; background: #0a0a0a; color: #f0f0f0; border-top: 1px solid #222;">
+        <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 50px; align-items: flex-start; justify-content: center;">
+            <div style="flex: 1.5; min-width: 320px;">
+                <h2 style="color: #00a8ff; font-size: 2.5rem; margin-bottom: 25px; text-transform: uppercase;">The Pilot Behind the Lens</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; color: #ddd;">
+                    Rooted in Kentucky and focused on precision. Born and raised in <strong>Frankfort</strong> and now proud to call <strong>Louisville</strong> home, I’ve spent years mastering the art of aerial perspective.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 35px; color: #ddd;">
+                    What started with my first drone in 2019 has evolved into a dedicated mission to provide Kentucky businesses with high-resolution, professional-grade aerial data.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; gap: 15px;">
+                        <span style="color: #00a8ff; font-weight: bold;">✓</span>
+                        <div>
+                            <strong>7 Years of Flight Experience</strong><br>
+                            <span style="color: #999; font-size: 0.95rem;">Hundreds of hours capturing Kentucky's industrial and scenic landmarks.</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <span style="color: #00a8ff; font-weight: bold;">✓</span>
+                        <div>
+                            <strong>Local Expertise</strong><br>
+                            <span style="color: #999; font-size: 0.95rem;">Deep knowledge of Central Kentucky terrain, from the Ohio River to Shelby County.</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <span style="color: #00a8ff; font-weight: bold;">✓</span>
+                        <div>
+                            <strong>FAA Standards</strong><br>
+                            <span style="color: #999; font-size: 0.95rem;">Currently finalizing Part 107 certification for professional, safe, and compliant operations.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <p style="margin-top: 30px;">&copy; 2026 Louisville Drone Services. FAA Part 107 Certified.</p>
-    </footer>
-
-    <script>
-      const SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
-
-      const pillsContainer = document.getElementById('pills');
-      const serviceInput = document.getElementById('service-input');
-      pillsContainer.querySelectorAll('.pill').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          pillsContainer.querySelectorAll('.pill').forEach(function (b) { b.classList.remove('selected'); });
-          btn.classList.add('selected');
-          serviceInput.value = btn.dataset.val;
-        });
-      });
-
-      const form = document.getElementById('intake-form');
-      const submitBtn = document.getElementById('submit-btn');
-      const successMsg = document.getElementById('success-msg');
-      const errorMsg = document.getElementById('error-msg');
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        successMsg.style.display = 'none';
-        errorMsg.style.display = 'none';
-
-        if (!serviceInput.value) {
-          errorMsg.textContent = 'Please select a mission type above.';
-          errorMsg.style.display = 'block';
-          return;
-        }
-        if (SCRIPT_URL.indexOf('PASTE_YOUR') === 0) {
-          errorMsg.textContent = 'Form is not yet connected to a sheet. See SETUP-INSTRUCTIONS.md.';
-          errorMsg.style.display = 'block';
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-
-        const formData = new FormData(form);
-
-        fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData
-        })
-          .then(function () {
-            successMsg.style.display = 'block';
-            form.reset();
-            pillsContainer.querySelectorAll('.pill').forEach(function (b) { b.classList.remove('selected'); });
-          })
-          .catch(function () {
-            errorMsg.style.display = 'block';
-          })
-          .finally(function () {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send flight request';
-          });
-      });
-    </script>
-</body>
-</html>
+            <div id="contact" style="flex: 1; min-width: 320px; max-width: 400px; border: 2px solid #00a8ff; border-radius: 20px; padding: 45px 30px; text-align: center; background: #111; box-shadow: 0 10px 30px rgba(0,168,255,0.1);">
+                <h3 style="margin-top: 0; margin-bottom: 25px; color: #fff; font-size: 1.5rem;">Let's Work Together</h3>
+                <a href="tel:5024379404" style="font-size: 2.2rem; font-weight: bold; color: #00a8ff; text-decoration: none; display: block; margin-bottom: 10px;">(502) 437-9404</a>
+                <p style="margin-bottom: 30px; color: #ccc;">louisvilledroneservices@gmail.com</p>
+                <div class="social-icons" style="margin-bottom: 40px;">
+                    <a href="https://www.facebook.com/louisvilledroneservices" target="_blank" title="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/your-profile" target="_blank" title="
