@@ -812,10 +812,14 @@
                 <div class="form-group-section">
                     <p class="label">1. Contact Information</p>
                     <div class="form-row">
-                        <input type="text" name="full_name" placeholder="Full Name / Company Name *" required>
+                        <input type="text" name="first_name" placeholder="First Name *" required>
+                        <input type="text" name="last_name" placeholder="Last Name *" required>
                     </div>
                     <div class="form-row" style="margin-top: 14px;">
+                        <input type="text" name="company_name" placeholder="Company Name (optional)">
                         <input type="tel" name="phone" placeholder="Phone Number *" required>
+                    </div>
+                    <div style="margin-top: 14px;">
                         <input type="email" name="email" placeholder="Email Address *" required>
                     </div>
                     <div style="margin-top: 14px;">
@@ -1029,7 +1033,7 @@
 
         // ---- Google Sheets Intake Form Handler ----
         // UPDATE THIS URL with your Google Apps Script deployment URL
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwa3se9vHHVe0JarUIzie7v97sJHdVZPOHTQRGDBavIodUrZkBciN2lcnu3VGz2blFD/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
 
         // Helper to setup pill selection
         function setupPills(containerId, inputId) {
