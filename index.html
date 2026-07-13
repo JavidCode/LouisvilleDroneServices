@@ -116,8 +116,6 @@
             .nav-links { justify-content: center; gap: 18px 22px; }
         }
 
-        /* Short/wide viewports: rotated phones (e.g. iPhone in landscape). Keeps
-           the nav compact so links don't get squeezed into wrapping mid-word. */
         @media (max-height: 500px) and (orientation: landscape) {
             nav { padding-top: 10px; padding-bottom: 10px; gap: 10px; }
             .logo { max-width: 130px; }
@@ -186,7 +184,6 @@
             margin-bottom: 40px;
         }
 
-        /* Services Grid */
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -209,7 +206,6 @@
 
         .card h3 { color: var(--primary); margin-top: 0; }
 
-        /* Portfolio Gallery */
         .portfolio-title {
             text-align: center;
             font-size: 2.5rem;
@@ -284,7 +280,6 @@
             filter: grayscale(0%);
         }
 
-        /* Portfolio Section Footer Info Bar */
         .portfolio-info-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -321,7 +316,6 @@
             color: var(--text-muted);
         }
 
-        /* Lightbox Overlay */
         #lightbox {
             display: none;
             position: fixed;
@@ -372,7 +366,6 @@
             padding: 10px 20px;
         }
 
-        /* Call to Action */
         .cta-btn {
             display: inline-block;
             padding: 18px 35px;
@@ -392,7 +385,6 @@
             transform: translateY(-2px);
         }
 
-        /* Scoped Native Dark Intake Form Container Styles */
         .form-container-wrap {
             max-width: 750px;
             margin: 80px auto;
@@ -446,6 +438,11 @@
             text-transform: uppercase;
             text-align: left;
         }
+        .form-group-section .sub-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
         
@@ -492,8 +489,9 @@
             border-color: var(--primary) !important;
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.18) !important;
         }
-        .form-card textarea { min-height: 100px; resize: vertical; margin-top: 14px; }
+        .form-card textarea { min-height: 80px; resize: vertical; }
         .form-row + input, .form-row + select { margin-top: 14px; }
+        input[type="hidden"] { display: none; }
         
         .form-card button[type="submit"] {
             width: 100%;
@@ -529,7 +527,6 @@
             margin-top: 1.5rem;
         }
 
-        /* Social Icons */
         .social-icons {
             margin: 25px 0;
             display: flex;
@@ -547,7 +544,6 @@
             filter: drop-shadow(0 0 8px var(--primary));
         }
 
-        /* About + Contact */
         .about-section {
             padding: 80px 20px;
             background: var(--bg-elevated);
@@ -805,78 +801,105 @@
     <section id="request-quote" class="form-container-wrap">
         <div class="form-header-block">
             <div class="eyebrow">FAA PART 107 CERTIFIED</div>
-            <h2>Flight Request Mission Intake</h2>
-            <p>Tell us about your project scale and parameters. We will review airspace restrictions and follow up within one business day.</p>
+            <h2>Project Intake Form</h2>
+            <p>To help check airspace restrictions, evaluate the property scope, and provide an accurate quote, please fill out this quick project intake form.</p>
             <div class="coords">38.2527&deg; N, 85.7585&deg; W &mdash; LOUISVILLE, KY</div>
         </div>
         
         <div class="form-card">
             <form id="intake-form">
+                <!-- 1. Contact Information -->
                 <div class="form-group-section">
-                    <p class="label">Mission type</p>
-                    <div class="form-pills" id="pills">
-                        <button type="button" class="pill" data-val="Aerial photography/video">Aerial photo / video</button>
-                        <button type="button" class="pill" data-val="Real estate listing">Real estate listing</button>
-                        <button type="button" class="pill" data-val="Roof/property inspection">Property inspection</button>
-                        <button type="button" class="pill" data-val="Event coverage">Event coverage</button>
-                    </div>
-                    <input type="hidden" name="service" id="service-input" required>
-                </div>
-
-                <div class="form-group-section">
-                    <p class="label">Contact info</p>
+                    <p class="label">1. Contact Information</p>
                     <div class="form-row">
-                        <input type="text" name="name" placeholder="Full name" required>
-                        <input type="text" name="business" placeholder="Business (optional)">
+                        <input type="text" name="full_name" placeholder="Full Name / Company Name *" required>
                     </div>
                     <div class="form-row" style="margin-top: 14px;">
-                        <input type="email" name="email" placeholder="name@email.com" required>
-                        <input type="tel" name="phone" placeholder="(502) 555-0100" required>
+                        <input type="tel" name="phone" placeholder="Phone Number *" required>
+                        <input type="email" name="email" placeholder="Email Address *" required>
+                    </div>
+                    <div style="margin-top: 14px;">
+                        <p class="sub-label">Preferred Method of Contact:</p>
+                        <div class="form-pills" id="contact-pills">
+                            <button type="button" class="pill" data-val="Email">Email</button>
+                            <button type="button" class="pill" data-val="Text">Text</button>
+                            <button type="button" class="pill" data-val="Phone Call">Phone Call</button>
+                        </div>
+                        <input type="hidden" name="preferred_contact" id="preferred-contact-input">
                     </div>
                 </div>
 
+                <!-- 2. Property & Location Details -->
                 <div class="form-group-section">
-                    <p class="label">Location &amp; timing</p>
-                    <input type="text" name="address" placeholder="Site address or intersection, Louisville KY" required>
-                    <div class="form-row" style="margin-top: 14px;">
-                        <input type="date" name="date">
-                        <select name="timing">
-                            <option value="">Flexible timing?</option>
-                            <option>Firm date</option>
-                            <option>Flexible, this week</option>
-                            <option>Flexible, this month</option>
-                        </select>
+                    <p class="label">2. Property &amp; Location Details</p>
+                    <input type="text" name="address" placeholder="Property Address (Street, City, State, Zip) *" required>
+                    <div style="margin-top: 14px;">
+                        <p class="sub-label">Property Type:</p>
+                        <div class="form-pills" id="property-pills">
+                            <button type="button" class="pill" data-val="Residential (Single-family home)">Residential</button>
+                            <button type="button" class="pill" data-val="Commercial (Business, warehouse, retail, etc.)">Commercial</button>
+                            <button type="button" class="pill" data-val="Multi-Family (Apartments, condos)">Multi-Family</button>
+                            <button type="button" class="pill" data-val="Land / Acreage">Land / Acreage</button>
+                        </div>
+                        <input type="hidden" name="property_type" id="property-type-input">
+                    </div>
+                    <input type="text" name="property_size" placeholder="Estimated Size of Property / Building (e.g., 2,000 sq ft, 2 stories, 5 acres)" style="margin-top: 14px;">
+                </div>
+
+                <!-- 3. Project Scope & Deliverables -->
+                <div class="form-group-section">
+                    <p class="label">3. Project Scope &amp; Deliverables</p>
+                    <p class="sub-label">What type of service do you require? (Select all that apply):</p>
+                    <div class="form-pills" id="service-pills">
+                        <button type="button" class="pill" data-val="Roof Inspection (Standard high-res visual photos/video)">Roof Inspection</button>
+                        <button type="button" class="pill" data-val="Roof / Property Mapping (2D Orthomosaic / 3D Model for measurements)">Property Mapping</button>
+                        <button type="button" class="pill" data-val="Real Estate Marketing (Media for listing/sale)">Real Estate Marketing</button>
+                        <button type="button" class="pill" data-val="Construction Progress Tracking">Construction Progress</button>
+                        <button type="button" class="pill" data-val="Other">Other</button>
+                    </div>
+                    <input type="hidden" name="service_type" id="service-type-input">
+                    <input type="text" name="service_other" placeholder="If Other, please specify" style="margin-top: 10px; display: none;" id="service-other-input">
+                    
+                    <textarea name="primary_goal" placeholder="What is the primary goal of this project? (e.g., assessing storm damage for insurance, selling a home, checking a commercial lease handoff)" style="margin-top: 14px;"></textarea>
+                    
+                    <p class="sub-label" style="margin-top: 14px;">What final deliverables do you need?</p>
+                    <div class="form-pills" id="deliverables-pills">
+                        <button type="button" class="pill" data-val="Raw, unedited high-resolution photos and video">Raw Media</button>
+                        <button type="button" class="pill" data-val="Edited/Curated media package">Edited Media</button>
+                        <button type="button" class="pill" data-val="Measurable roof report / 3D model link">Roof Report / 3D Model</button>
+                    </div>
+                    <input type="hidden" name="deliverables" id="deliverables-input">
+                </div>
+
+                <!-- 4. Timeline & Access -->
+                <div class="form-group-section">
+                    <p class="label">4. Timeline &amp; Access</p>
+                    <input type="date" name="requested_date" placeholder="Requested Date / Deadline for Completion">
+                    
+                    <div style="margin-top: 14px;">
+                        <p class="sub-label">Are there any known airspace or access restrictions? (e.g., near an airport, military base, or inside a gated community)</p>
+                        <div class="form-pills" id="restrictions-pills">
+                            <button type="button" class="pill" data-val="Yes">Yes</button>
+                            <button type="button" class="pill" data-val="No">No</button>
+                            <button type="button" class="pill" data-val="Not Sure">Not Sure</button>
+                        </div>
+                        <input type="hidden" name="restrictions" id="restrictions-input">
+                    </div>
+                    
+                    <div style="margin-top: 14px;">
+                        <p class="sub-label">Is property owner permission already secured for this flight?</p>
+                        <div class="form-pills" id="permission-pills">
+                            <button type="button" class="pill" data-val="Yes">Yes</button>
+                            <button type="button" class="pill" data-val="No">No</button>
+                            <button type="button" class="pill" data-val="I am the owner / authorized representative">I am the owner</button>
+                        </div>
+                        <input type="hidden" name="permission" id="permission-input">
                     </div>
                 </div>
 
-                <div class="form-group-section">
-                    <p class="label">Scope</p>
-                    <div class="form-row">
-                        <select name="size">
-                            <option value="">Property/area size</option>
-                            <option>Under 1 acre</option>
-                            <option>1&ndash;5 acres</option>
-                            <option>5&ndash;20 acres</option>
-                            <option>20+ acres</option>
-                        </select>
-                        <select name="budget">
-                            <option value="">Budget range</option>
-                            <option>Under $250</option>
-                            <option>$250&ndash;$500</option>
-                            <option>$500&ndash;$1,000</option>
-                            <option>$1,000+</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group-section">
-                    <p class="label">Mission details</p>
-                    <textarea name="details" placeholder="Tell us about the shots you need, access restrictions, or anything else we should know."></textarea>
-                </div>
-
-                <button type="submit" id="submit-btn">Send flight request</button>
-                <div class="msg success" id="success-msg">Request sent. We'll be in touch within one business day.</div>
-                <div class="msg error" id="error-msg">Something went wrong. Please try again or call us directly.</div>
+                <button type="submit" id="submit-btn">Submit Project Intake</button>
+                <div class="msg success" id="success-msg">Thank you! We'll review your request and be in touch within one business day.</div>
+                <div class="msg error" id="error-msg">Something went wrong. Please try again or call us directly at (502) 437-9404.</div>
             </form>
         </div>
         <div class="form-footer-notice">Louisville Drone Services &middot; Part 107 certified &middot; Fully insured</div>
@@ -941,7 +964,6 @@
         <p>Providing 4K Aerial Perspectives across Kentucky since 2019.</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         // ---- Lightbox Logic ----
         const lb = document.getElementById('lightbox');
@@ -1006,18 +1028,48 @@
         });
 
         // ---- Google Sheets Intake Form Handler ----
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRcMGa8xmsFUVresr9tZ7oUo_Hs7OlbK-KXDFWOMJqad5RWT_-4I8IxohGslsZjmqs/exec";
-        const pillsContainer = document.getElementById('pills');
-        const serviceInput = document.getElementById('service-input');
-        
-        pillsContainer.querySelectorAll('.pill').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                pillsContainer.querySelectorAll('.pill').forEach(function (b) { b.classList.remove('selected'); });
-                btn.classList.add('selected');
-                serviceInput.value = btn.dataset.val;
+        // UPDATE THIS URL with your Google Apps Script deployment URL
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwa3se9vHHVe0JarUIzie7v97sJHdVZPOHTQRGDBavIodUrZkBciN2lcnu3VGz2blFD/exec";
+
+        // Helper to setup pill selection
+        function setupPills(containerId, inputId) {
+            const container = document.getElementById(containerId);
+            const input = document.getElementById(inputId);
+            if (!container || !input) return;
+            
+            container.querySelectorAll('.pill').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    container.querySelectorAll('.pill').forEach(function (b) { b.classList.remove('selected'); });
+                    btn.classList.add('selected');
+                    input.value = btn.dataset.val;
+                });
             });
+        }
+
+        // Setup all pill groups
+        setupPills('contact-pills', 'preferred-contact-input');
+        setupPills('property-pills', 'property-type-input');
+        setupPills('service-pills', 'service-type-input');
+        setupPills('deliverables-pills', 'deliverables-input');
+        setupPills('restrictions-pills', 'restrictions-input');
+        setupPills('permission-pills', 'permission-input');
+
+        // Show/hide "Other" input for service type
+        document.getElementById('service-pills').addEventListener('click', function(e) {
+            const pill = e.target.closest('.pill');
+            if (!pill) return;
+            const otherInput = document.getElementById('service-other-input');
+            if (pill.dataset.val === 'Other') {
+                otherInput.style.display = 'block';
+                otherInput.required = true;
+            } else {
+                otherInput.style.display = 'none';
+                otherInput.required = false;
+                otherInput.value = '';
+            }
         });
 
+        // Form submission
         const form = document.getElementById('intake-form');
         const submitBtn = document.getElementById('submit-btn');
         const successMsg = document.getElementById('success-msg');
@@ -1028,19 +1080,33 @@
             successMsg.style.display = 'none';
             errorMsg.style.display = 'none';
 
-            if (!serviceInput.value) {
-                errorMsg.textContent = 'Please select a mission type above.';
+            // Validate required fields
+            const required = form.querySelectorAll('[required]');
+            let valid = true;
+            required.forEach(function(field) {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.style.borderColor = '#ff4444';
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+            
+            if (!valid) {
+                errorMsg.textContent = 'Please fill in all required fields.';
                 errorMsg.style.display = 'block';
                 return;
             }
-            if (SCRIPT_URL.indexOf('PASTE_YOUR') === 0) {
-                errorMsg.textContent = 'Form is not yet connected to a sheet. See SETUP-INSTRUCTIONS.md.';
+
+            // Check if SCRIPT_URL has been updated
+            if (SCRIPT_URL.indexOf('YOUR_DEPLOYMENT_ID') !== -1) {
+                errorMsg.textContent = 'Form is not yet connected to a sheet. Please contact the site administrator.';
                 errorMsg.style.display = 'block';
                 return;
             }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
+            submitBtn.textContent = 'Submitting...';
 
             const formData = new FormData(form);
             fetch(SCRIPT_URL, {
@@ -1051,17 +1117,22 @@
             .then(function () {
                 successMsg.style.display = 'block';
                 form.reset();
-                pillsContainer.querySelectorAll('.pill').forEach(function (b) { b.classList.remove('selected'); });
+                // Reset all pills
+                document.querySelectorAll('.form-pills').forEach(function(p) {
+                    p.querySelectorAll('.pill').forEach(function(b) { b.classList.remove('selected'); });
+                });
+                document.getElementById('service-other-input').style.display = 'none';
+                // Reset border colors
+                form.querySelectorAll('[required]').forEach(function(f) { f.style.borderColor = ''; });
             })
             .catch(function () {
                 errorMsg.style.display = 'block';
             })
             .finally(function () {
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Send flight request';
+                submitBtn.textContent = 'Submit Project Intake';
             });
         });
     </script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"55eaa639f13645fba500ec6c6bcc9af6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
