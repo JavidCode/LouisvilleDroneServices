@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <title>Louisville Drone Services | Aerial Photography & Inspections</title>
-    <meta name="description" content="FAA Part 107 Certified drone services in Louisville, KY. 7 years of experience in 4K real estate photography and industrial inspections.">
+    <title>Louisville Drone Services | FAA-Certified Aerial Photography & Roof Inspections</title>
+    <meta name="description" content="FAA Part 107 certified drone pilot serving Louisville, KY. 4K aerial photography for real estate, drone roof inspections, and rail & industrial surveys across Jefferson, Shelby, and Oldham counties.">
+    <meta name="keywords" content="drone services Louisville KY, drone roof inspection Louisville, aerial photography Louisville, real estate drone photography Kentucky, FAA Part 107 pilot Louisville">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Louisville Drone Services">
     <meta name="theme-color" content="#0c0f14">
+    <link rel="canonical" href="https://louisvilledrones.com/">
 
     <meta name="geo.region" content="US-KY">
     <meta name="geo.placename" content="Louisville">
@@ -16,9 +20,55 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://louisvilledrones.com/">
+    <meta property="og:site_name" content="Louisville Drone Services">
     <meta property="og:title" content="Louisville Drone Services | Professional Aerial Perspectives">
-    <meta property="og:description" content="FAA-certified 4K drone cinematography. 7 years of flight experience serving Kentucky.">
+    <meta property="og:description" content="FAA-certified 4K drone cinematography and roof inspections. 7 years of flight experience serving Kentucky.">
     <meta property="og:image" content="https://louisvilledrones.com/og-image.jpg">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Louisville Drone Services | Professional Aerial Perspectives">
+    <meta name="twitter:description" content="FAA-certified 4K drone cinematography and roof inspections. 7 years of flight experience serving Kentucky.">
+    <meta name="twitter:image" content="https://louisvilledrones.com/og-image.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Louisville Drone Services",
+      "image": "https://louisvilledrones.com/og-image.jpg",
+      "url": "https://louisvilledrones.com/",
+      "telephone": "+1-502-437-9404",
+      "email": "louisvilledroneservices@gmail.com",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Louisville",
+        "addressRegion": "KY",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 38.2527,
+        "longitude": -85.7585
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Louisville, KY" },
+        { "@type": "AdministrativeArea", "name": "Jefferson County, KY" },
+        { "@type": "AdministrativeArea", "name": "Shelby County, KY" },
+        { "@type": "AdministrativeArea", "name": "Oldham County, KY" }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/louisvilledroneservices",
+        "https://www.instagram.com/your-profile"
+      ],
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Drone Roof Inspection" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Real Estate Aerial Photography" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rail & Industrial Aerial Inspection" } }
+      ]
+    }
+    </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -45,7 +95,7 @@
             --accent: #232b35;
             --input-bg: #0f141b;
             --nav-height: 84px;
-            --nav-height-mobile: 132px;
+            --nav-height-mobile: 76px;
         }
 
         * { box-sizing: border-box; }
@@ -68,7 +118,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
             gap: 16px;
             padding: 16px calc(30px + env(safe-area-inset-right)) 16px calc(30px + env(safe-area-inset-left));
             background: rgba(12, 15, 20, 0.92);
@@ -79,15 +128,29 @@
             z-index: 1000;
         }
 
+        .nav-top {
+            display: flex;
+            align-items: center;
+        }
+
         .logo {
             max-width: 220px;
             height: auto;
         }
 
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.4rem;
+            padding: 8px;
+            cursor: pointer;
+        }
+
         .nav-links {
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
             gap: 12px 28px;
             list-style: none;
             margin: 0;
@@ -123,19 +186,52 @@
             outline-offset: 2px;
         }
 
+        /* Compact mobile nav: logo + hamburger in one row, links collapse into a dropdown */
         @media (max-width: 700px) {
-            .logo { max-width: 160px; }
-            nav { justify-content: center; text-align: center; }
-            .nav-links { justify-content: center; gap: 18px 22px; }
-            html { scroll-padding-top: calc(var(--nav-height-mobile) + 16px); }
+            .logo { max-width: 150px; }
+            nav {
+                flex-direction: column;
+                align-items: stretch;
+                position: relative;
+                padding: 12px calc(20px + env(safe-area-inset-right)) 12px calc(20px + env(safe-area-inset-left));
+            }
+            .nav-top {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 100%;
+                background: var(--bg-elevated);
+                border-bottom: 1px solid var(--accent);
+                box-shadow: 0 16px 24px rgba(0,0,0,0.45);
+                padding: 6px 0 14px;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links li { width: 100%; }
+            .nav-links a {
+                display: block;
+                padding: 14px calc(24px + env(safe-area-inset-right)) 14px calc(24px + env(safe-area-inset-left));
+                border-bottom: 1px solid var(--accent);
+            }
+            .nav-links .nav-cta {
+                margin: 14px calc(20px + env(safe-area-inset-right)) 0 calc(20px + env(safe-area-inset-left));
+                text-align: center;
+                border-bottom: none;
+            }
+            html { scroll-padding-top: calc(var(--nav-height-mobile) + 12px); }
         }
 
         @media (max-height: 500px) and (orientation: landscape) {
-            nav { padding-top: 10px; padding-bottom: 10px; gap: 10px; }
+            nav { padding-top: 10px; padding-bottom: 10px; }
             .logo { max-width: 130px; }
-            .nav-links { gap: 8px 16px; }
-            .nav-links a { font-size: 0.85rem; }
-            .nav-links .nav-cta { padding: 7px 14px; }
         }
 
         .hero {
@@ -726,8 +822,13 @@
     </div>
 
     <nav>
-        <img src="logo.png" alt="Louisville Drone Services" class="logo">
-        <ul class="nav-links">
+        <div class="nav-top">
+            <img src="logo.png" alt="Louisville Drone Services" class="logo">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <ul class="nav-links" id="nav-links">
             <li><a href="#services">Services</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#about">About</a></li>
@@ -1030,6 +1131,31 @@
     </footer>
 
     <script>
+        // ---- Mobile Nav Toggle ----
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinksEl = document.getElementById('nav-links');
+
+        function setNavIcon(isOpen) {
+            navToggle.innerHTML = isOpen
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        }
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = navLinksEl.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            setNavIcon(isOpen);
+        });
+
+        // Close the dropdown once a link is tapped
+        navLinksEl.querySelectorAll('a').forEach((a) => {
+            a.addEventListener('click', () => {
+                navLinksEl.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                setNavIcon(false);
+            });
+        });
+
         // ---- Lightbox Logic ----
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
