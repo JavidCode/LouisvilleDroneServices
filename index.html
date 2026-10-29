@@ -1651,6 +1651,29 @@
           </div>
         </div>
 
+        <!-- 5. Photo & Video Sharing Preferences -->
+        <div class="form-group-section">
+          <p class="label">5. Photo &amp; Video Sharing Preferences</p>
+          <p class="sub-label">These optional preferences let us know whether to ask about sharing project photos or videos. They are not permission to publish; we will request approval for specific media and posts.</p>
+          <div style="margin-top: 14px;">
+            <p class="sub-label">May we ask to share project photos/videos?</p>
+            <div class="form-pills" id="portfolio-sharing-pills">
+              <button type="button" class="pill" data-val="Ask me first">Ask me first</button>
+              <button type="button" class="pill" data-val="Do not ask">Do not ask</button>
+            </div>
+            <input type="hidden" name="portfolio_sharing_preference" id="portfolio-sharing-input">
+          </div>
+          <div style="margin-top: 14px;">
+            <p class="sub-label">Identification/tagging preference</p>
+            <div class="form-pills" id="portfolio-tagging-pills">
+              <button type="button" class="pill" data-val="Ask each time">Ask each time</button>
+              <button type="button" class="pill" data-val="May tag after I approve a post">May tag after I approve a post</button>
+              <button type="button" class="pill" data-val="Do not tag/identify">Do not tag/identify</button>
+            </div>
+            <input type="hidden" name="portfolio_tagging_preference" id="portfolio-tagging-input">
+          </div>
+        </div>
+
         <button type="submit" id="submit-btn">Submit Project Intake</button>
         <div class="msg success" id="success-msg">Thank you! We'll review your request and be in touch within one business day.</div>
         <div class="msg error" id="error-msg">Something went wrong. Please try again or call us directly at (502) 437-9404.</div>
@@ -1748,7 +1771,7 @@
       <div id="contact" class="contact-card">
         <h3>Let's Work Together</h3>
         <a href="tel:5024379404" class="phone-link">(502) 437-9404</a>
-        <p class="email">louisvilledroneservices@gmail.com</p>
+        <p class="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfd3d0cad6ccc9d6d3d3dadbcdd0d1daccdacdc9d6dcdaccffd8d2ded6d391dcd0d2">[email&#160;protected]</a></p>
         <div class="social-icons">
           <a href="https://www.facebook.com/louisvilledroneservices" target="_blank" rel="noopener noreferrer" title="Facebook">
             <i class="fa-brands fa-facebook"></i>
@@ -1775,7 +1798,7 @@
     <a href="#request-quote" class="quote-link"><i class="fa-solid fa-clipboard-list"></i> Get a Quote</a>
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ---- FAQ Accordion ----
     document.querySelectorAll('.faq-question').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -1896,6 +1919,8 @@
     setupPills('deliverables-pills', 'deliverables-input');
     setupPills('restrictions-pills', 'restrictions-input');
     setupPills('permission-pills', 'permission-input');
+    setupPills('portfolio-sharing-pills', 'portfolio-sharing-input');
+    setupPills('portfolio-tagging-pills', 'portfolio-tagging-input');
 
     document.getElementById('service-pills').addEventListener('click', function(e) {
       const pill = e.target.closest('.pill');
@@ -1971,5 +1996,6 @@
       });
     });
   </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"55eaa639f13645fba500ec6c6bcc9af6","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
